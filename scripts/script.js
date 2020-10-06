@@ -46,7 +46,7 @@ $(document).ready(function () {
             convertHour(currentHour);
             console.log("current 24 hour = " + output);
 
-            //use military time (24 hour) to determine if timeslot is past, present, or future
+            //use military time (24 hour) to determine if time slot is past, present, or future
             if (militaryHour[i] === output) {
                 textAreaEl.attr("class", "col-10 hour present");
             } else if (militaryHour[i] > output) {
