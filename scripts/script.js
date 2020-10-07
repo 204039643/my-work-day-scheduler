@@ -2,9 +2,7 @@ $(document).ready(function () {
 
     //JS variables
     var hours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
-    var militaryHour = [9, 10, 11, 12, 13, 14, 15, 16, 17];
     var currentHour = moment().format('hA');
-    var output = 0
     console.log("Current hour = " + currentHour);
    
     //Function Definitions
@@ -31,8 +29,6 @@ $(document).ready(function () {
             textAreaEl.attr("class", "col-md-10 hour past");
 
             //set coloring of text area: past = grey, present = red, future = green
-
-            console.log("current 24 hour = " + output);
 
             if (parseInt(currentHour) === parseInt(hours[i])) {
                 textAreaEl.attr("class", "col-10 hour present");
