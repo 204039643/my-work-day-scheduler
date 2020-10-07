@@ -3,11 +3,10 @@ $(document).ready(function () {
     //JS variables
     var hours = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
     var militaryHour = [9, 10, 11, 12, 13, 14, 15, 16, 17];
-    var currentHour = moment().format('ha');
-    var newHour = 0
+    var currentHour = moment().format('hA');
     var output = 0
     console.log("Current hour = " + currentHour);
-
+   
     //Function Definitions
 
     //display the current day is displayed at the top of the calendar
@@ -15,16 +14,6 @@ $(document).ready(function () {
         var today = moment().format('dddd, MMMM Do');
         console.log(today);
         $("#currentDay").text(today);
-    }
-
-    //convert to 24 hour format for current hour
-    function convertHour(hour) {
-        if (hour.includes("am") !== "am") {
-            output = parseInt(hour) + 12;
-            console.log("24 hour time = " + output);
-        } else {
-            output = parseInt(hour);
-        }
     }
 
     // Build time blocks for standard business hors
@@ -42,14 +31,12 @@ $(document).ready(function () {
             textAreaEl.attr("class", "col-md-10 hour past");
 
             //set coloring of text area: past = grey, present = red, future = green
-            console.log("current i hour = " + militaryHour[i]);
-            convertHour(currentHour);
+
             console.log("current 24 hour = " + output);
 
-            //use military time (24 hour) to determine if time slot is past, present, or future
-            if (militaryHour[i] === output) {
+            if (parseInt(currentHour) === parseInt(hours[i])) {
                 textAreaEl.attr("class", "col-10 hour present");
-            } else if (militaryHour[i] > output) {
+            } else if ((parseInt(currentHour) + 12) > (parseInt(hours[i]))) {
                 textAreaEl.attr("class", "col-10 hour future");
             }
 
@@ -129,6 +116,6 @@ $(document).ready(function () {
     };
 
     //function calls
-    buildCalender();
     currentDay();
+    buildCalender();
 });
